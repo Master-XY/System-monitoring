@@ -11,13 +11,18 @@ async function startServer() {
     console.log("✅ Database connected successfully!");
     console.log("Database Time:", result.rows[0].now);
 
-    // Collect metrics once
-    await collectMetrics();
+// Collect first metric immediately
+await collectMetrics();
 
-    // Start Express server
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on port ${PORT}`);
-    });
+// Collect every 5 seconds
+setInterval(async () => {
+  await collectMetrics();
+}, 5000);
+
+// Start Express server
+app.listen(PORT, () => {
+  console.log(`🚀 Server is running on port ${PORT}`);
+});
 
   } catch (error) {
     console.error("❌ Database connection failed!");
