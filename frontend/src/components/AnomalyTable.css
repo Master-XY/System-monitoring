@@ -1,0 +1,66 @@
+.anomaly-container {
+  margin-top: 40px;
+}
+
+.anomaly-title {
+  margin-bottom: 20px;
+  color: #f8fafc;
+}
+
+.anomaly-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1e293b;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.anomaly-table thead {
+  background: #334155;
+  position: sticky;
+  top: 0;
+}
+
+.anomaly-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+}
+
+.anomaly-table td {
+  padding: 14px;
+  border-top: 1px solid #334155;
+}
+
+.anomaly-table tbody tr:hover {
+  background: #273549;
+  transition: 0.2s;
+}
+
+/* Base badge */
+.badge {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Color coding aligned with graph */
+.cpu {
+  background: #38bdf8; /* blue */
+}
+
+.memory {
+  background: #fbbf24; /* yellow */
+  color: #111827;
+}
+
+.disk {
+  background: #ef4444; /* red */
+}

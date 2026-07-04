@@ -5,6 +5,8 @@ import {
   getAnomalies,
 } from "./services/api";
 
+import "./styles/dashboard.css";
+
 import MetricCard from "./components/MetricCard";
 import MetricsChart from "./components/MetricsChart";
 import AnomalyTable from "./components/AnomalyTable";
@@ -33,13 +35,10 @@ function App() {
       }
     }
 
-    // First fetch
     fetchMetrics();
 
-    // Fetch every 5 seconds
     const interval = setInterval(fetchMetrics, 5000);
 
-    // Cleanup
     return () => clearInterval(interval);
   }, []);
 
@@ -48,16 +47,12 @@ function App() {
   }
 
   return (
-    <div style={{ padding: "30px" }}>
-      <h1>System Monitoring Dashboard</h1>
+    <div className="dashboard">
+      <h1 className="dashboard-title">
+        🖥️ System Monitoring Dashboard
+      </h1>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "20px",
-          marginTop: "30px",
-        }}
-      >
+      <div className="cards">
         <MetricCard
           title="CPU Usage"
           value={metrics.cpu_usage.toFixed(2)}
@@ -77,11 +72,13 @@ function App() {
         />
       </div>
 
-      <hr style={{ margin: "40px 0" }} />
+      <div className="section">
+        <MetricsChart data={history} />
+      </div>
 
-      <MetricsChart data={history} />
-
-      <AnomalyTable anomalies={anomalies} />
+      <div className="section">
+        <AnomalyTable anomalies={anomalies} />
+      </div>
     </div>
   );
 }

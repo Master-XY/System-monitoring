@@ -1,18 +1,14 @@
+import "./MetricCard.css";
+
 function MetricCard({ title, value, unit }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ccc",
-        borderRadius: "10px",
-        padding: "20px",
-        width: "220px",
-        textAlign: "center",
-      }}
-    >
-      <h2>{title}</h2>
-      <h1>
-        {value} {unit}
-      </h1>
+    <div className="metric-card">
+      <h3 className="metric-title">{title}</h3>
+
+      <div className="metric-value">
+        {value}
+        <span className="metric-unit">{unit}</span>
+      </div>
     </div>
   );
 }
