@@ -138,9 +138,9 @@ Displays:
 
 ![Dashboard](docs/dashboard.png)
 
-### Metrics Chart
+### Anomaly Alert
 
-![Chart](docs/chart.png)
+![Chart](docs/anomaly-alert.png)
 
 ### Anomaly Table
 
