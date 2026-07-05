@@ -15,6 +15,7 @@ function App() {
   const [metrics, setMetrics] = useState(null);
   const [history, setHistory] = useState([]);
   const [anomalies, setAnomalies] = useState([]);
+  const [alertActive, setAlertActive] = useState(false);
 
   useEffect(() => {
     async function fetchMetrics() {
@@ -30,6 +31,18 @@ function App() {
         // Recent anomalies
         const anomaliesData = await getAnomalies();
         setAnomalies(anomaliesData);
+
+        // Check if latest anomaly occurred within last 10 seconds
+        if (anomaliesData.length > 0) {
+          const latest = anomaliesData[0];
+
+          const secondsAgo =
+            (Date.now() - new Date(latest.created_at).getTime()) / 1000;
+
+          setAlertActive(secondsAgo < 10);
+        } else {
+          setAlertActive(false);
+        }
       } catch (error) {
         console.error(error);
       }
@@ -47,9 +60,11 @@ function App() {
   }
 
   return (
-    <div className="dashboard">
+    <div className={`dashboard ${alertActive ? "dashboard-alert" : ""}`}>
       <h1 className="dashboard-title">
-        🖥️ System Monitoring Dashboard
+        {alertActive
+          ? "🚨 System Alert Active"
+          : "🖥️ System Monitoring Dashboard"}
       </h1>
 
       <div className="cards">
